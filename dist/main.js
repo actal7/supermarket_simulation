@@ -1,1 +1,1 @@
-(()=>{"use strict";(new class{test=()=>{console.log("test")}}).test(),console.log("test 2")})();
+(()=>{"use strict";new Worker("./controllers/simulationController.worker.js").postMessage("ma auzi ma?")})();

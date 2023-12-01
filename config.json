@@ -1,0 +1,4 @@
+{
+  "messageTargets": ["main", "simController", "w2", "w3"],
+  "messageTypes": ["start", "stop", "pause", "resume"]
+}
