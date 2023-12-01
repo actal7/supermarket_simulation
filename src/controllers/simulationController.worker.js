@@ -1,23 +1,30 @@
-import messageHandler from "../Utils/handlers";
+import Message from "../Utils/Message";
+import messageHandler from "../Utils/MessageHandler";
 
-self.onmessage = (e) => {
-  if (e.data.target === "simController") {
-    messageHandler(
-      {
-        start: () => {
-          console.log("start din simController");
-        },
-        stop: () => {
-          console.log("stop");
-        },
-        pause: () => {
-          console.log("pause");
-        },
-        resume: () => {
-          console.log("resume");
-        },
-      },
-      e.data.type
-    );
-  }
+const start = () => {
+  console.log("starting");
+};
+
+const stop = () => {
+  console.log("stop");
+};
+
+const pause = () => {
+  console.log("pause");
+};
+
+const resume = () => {
+  console.log("resume");
+};
+
+const actions = {
+  start,
+  stop,
+  pause,
+  resume,
+};
+
+onmessage = (e) => {
+  postMessage(new Message("main", "test"));
+  messageHandler("simController", actions, e.data);
 };
