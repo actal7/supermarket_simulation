@@ -4,11 +4,11 @@ export default class Message {
   _targetArray = config.messageTargets;
   _typeArray = config.messageTypes;
 
-  constructor(target, type, content = "") {
+  constructor(target, type, payload = "") {
     if (target === undefined) {
       throw new Error("Message target is undefined");
     } else if (typeof target !== "string") {
-      throw new Error("Message target is not a string: " + target);
+      throw new Error(`Message target is not a string [${target}]`);
     }
 
     if (type === undefined) {
@@ -17,8 +17,8 @@ export default class Message {
       throw new Error("Message type is not a string: " + type);
     }
 
-    if (typeof content !== "string") {
-      throw new Error("Message is not a string: " + content);
+    if (typeof payload !== "string" && typeof payload !== "object") {
+      throw new Error("Payload is not a string or object" + payload);
     }
 
     if (this._targetArray.indexOf(target) === -1) {
@@ -30,9 +30,9 @@ export default class Message {
     }
 
     return {
-      target: target,
-      type: type,
-      message: content,
+      target,
+      type,
+      payload,
       timestamp: Date.now(),
     };
   }

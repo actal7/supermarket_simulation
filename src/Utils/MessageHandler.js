@@ -1,8 +1,8 @@
 import config from "../../config.json";
 
 export default (target, actions, event) => {
-  if (event.target === undefined || event.type === undefined)
-    throw new Error(`Message is not valid [${event}]`);
+  // guarding against event pollution
+  if (event.target === undefined || event.type === undefined) return;
 
   if (config.messageTargets.find((t) => t === target) === undefined)
     throw new Error(`Target is not valid [${target}]`);
@@ -16,5 +16,6 @@ export default (target, actions, event) => {
     throw new Error(
       `Message type [${event.type}] is not valid for target [${event.target}]`
     );
+
   actions[event.type]();
 };

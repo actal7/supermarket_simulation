@@ -15,21 +15,24 @@
 }
 
 .header {
-  grid-area: "header";
+  grid-area: header;
 }
 
 .control-panel {
-  grid-area: "control-panel";
+  grid-area: control-panel;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .day-results {
-  grid-area: "day-results";
+  grid-area: day-results;
 }
 
 .final-results {
-  grid-area: "final-results";
+  grid-area: final-results;
 }
 
 .footer {
-  grid-area: "footer";
+  grid-area: footer;
 }

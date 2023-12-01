@@ -9,7 +9,32 @@
   <body>
     <div class="app-container">
       <header class="header"></header>
-      <section class="control-panel"></section>
+      <section class="control-panel">
+        <label for="control-panel__min-employees">Minimum Employees</label>
+        <input type="number" class="control-panel__min-employees" />
+
+        <label for="control-panel__max-employees">Maximum Employees</label>
+        <input type="number" class="control-panel__max-employees" />
+
+        <label for="control-panel__min-customers">Register Count</label>
+        <input type="text" class="control-panel__register-count" />
+
+        <label for="control-panel__aisle-count">Aisle Count</label>
+        <input type="text" class="control-panel__aisle-count" />
+
+        <label for="control-panel__hours">Total hours open</label>
+        <input type="text" class="control-panel__hours" />
+
+        <label for="control-panel__clients-peak"
+          >Clients Peak (Poisson distribution)</label
+        >
+        <input type="text" class="control-panel__clients-peak" />
+
+        <p>Estimated time to complete:</p>
+        <br />
+
+        <button class="control-panel__start-button">Start Simulation</button>
+      </section>
       <section class="day-results"></section>
       <section class="final-results"></section>
       <footer class="footer"></footer>
