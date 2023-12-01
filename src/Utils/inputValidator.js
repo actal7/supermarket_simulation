@@ -36,6 +36,11 @@ function validateClientsPeak(value) {
   return Number.isInteger(clients) && clients > 0;
 }
 
+function validateRepetitionCount(value) {
+  const repetitions = parseInt(value);
+  return Number.isInteger(repetitions) && repetitions > 0;
+}
+
 export {
   validateMinEmployees,
   validateMaxEmployees,
@@ -43,4 +48,5 @@ export {
   validateAisleCount,
   validateHoursOpen,
   validateClientsPeak,
+  validateRepetitionCount,
 };

@@ -21,10 +21,11 @@ let inputData = {
   aisleCount: null,
   hoursOpen: null,
   clientsPeak: null,
+  repetitions: null,
 };
 
 export default class UIController {
-  constructor() {
+  init() {
     initEventListeners(
       this.handleMinEmployeesChange.bind(this),
       this.handleMaxEmployeesChange.bind(this),
@@ -32,6 +33,7 @@ export default class UIController {
       this.handleAisleCountChange.bind(this),
       this.handleHoursOpenChange.bind(this),
       this.handleClientsPeakChange.bind(this),
+      this.handleRepetitionCountChange.bind(this),
       this.handleSimulationStart.bind(this)
     );
   }
@@ -42,6 +44,8 @@ export default class UIController {
       this.minEmployees = e.target.value;
     } else {
       console.error("invalid min employees");
+      this.minEmployees = null;
+      inputData.minEmployees = null;
     }
   }
 
@@ -50,6 +54,8 @@ export default class UIController {
       this.maxEmployees = e.target.value;
     } else {
       console.error("invalid max employees");
+      this.maxEmployees = null;
+      inputData.maxEmployees = null;
     }
   }
 
@@ -58,6 +64,8 @@ export default class UIController {
       this.registerCount = e.target.value;
     } else {
       console.error("invalid register count");
+      this.registerCount = null;
+      inputData.registerCount = null;
     }
   }
 
@@ -66,6 +74,8 @@ export default class UIController {
       this.aisleCount = e.target.value;
     } else {
       console.error("invalid aisle count");
+      this.aisleCount = null;
+      inputData.aisleCount = null;
     }
   }
 
@@ -74,6 +84,8 @@ export default class UIController {
       this.hoursOpen = e.target.value;
     } else {
       console.error("invalid hours open");
+      this.hoursOpen = null;
+      inputData.hoursOpen = null;
     }
   }
 
@@ -82,16 +94,29 @@ export default class UIController {
       this.clientsPeak = e.target.value;
     } else {
       console.error("invalid clients peak");
+      this.clientsPeak = null;
+      inputData.clientsPeak = null;
+    }
+  }
+
+  handleRepetitionCountChange(e) {
+    if (iv.validateRepetitionCount(e.target.value)) {
+      this.repetitionCount = e.target.value;
+    } else {
+      console.error("invalid repetition count");
+      this.repetitionCount = null;
+      inputData.repetitions = null;
     }
   }
 
   updateInputData() {
-    inputData.minEmployees = this.minEmployees;
-    inputData.maxEmployees = this.maxEmployees;
-    inputData.registerCount = this.registerCount;
-    inputData.aisleCount = this.aisleCount;
-    inputData.hoursOpen = this.hoursOpen;
-    inputData.clientsPeak = this.clientsPeak;
+    inputData.minEmployees = parseInt(this.minEmployees);
+    inputData.maxEmployees = parseInt(this.maxEmployees);
+    inputData.registerCount = parseInt(this.registerCount);
+    inputData.aisleCount = parseInt(this.aisleCount);
+    inputData.hoursOpen = parseInt(this.hoursOpen);
+    inputData.clientsPeak = parseInt(this.clientsPeak);
+    inputData.repetitions = parseInt(this.repetitionCount);
   }
 
   handleSimulationStart() {

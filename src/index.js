@@ -17,11 +17,13 @@ const actions = {
     console.log("resume");
   },
   submitInput: (payload) => {
-    console.log(payload);
+    simController.postMessage(new Message("simController", "start", payload));
   },
 };
 
+// Start services
 const uc = new UIController();
+uc.init();
 
 // Init the simulation controller worker
 const simController = new Worker(

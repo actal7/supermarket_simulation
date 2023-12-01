@@ -1,6 +1,17 @@
 {
-  "messageTargets": ["main", "simController", "w2", "w3"],
-  "messageTypes": ["start", "stop", "pause", "resume", "test", "submitInput"],
+  "messageTargets": ["main", "simController", "simDay"],
+  "messageTypes": [
+    "start",
+    "stop",
+    "pause",
+    "resume",
+    "test",
+    "submitInput",
+    "finishDay"
+  ],
   "employeeWage": 10,
-  "averageItemPrice": 5
+  "averageItemPrice": 5,
+  "maxBatchSize": 50,
+  "GCDelay": 10,
+  "maxWorkers": 10
 }

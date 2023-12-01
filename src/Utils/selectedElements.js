@@ -10,6 +10,9 @@ const registerCountInput = document.querySelector(
 const aisleCountInput = document.querySelector(".control-panel__aisle-count");
 const hoursOpenInput = document.querySelector(".control-panel__hours");
 const clientsPeakInput = document.querySelector(".control-panel__clients-peak");
+const repetitionCountInput = document.querySelector(
+  ".control-panel__repetitions"
+);
 const simulationButton = document.querySelector(".control-panel__start-button");
 
 function initEventListeners(
@@ -19,6 +22,7 @@ function initEventListeners(
   handleAisleCount,
   handleHoursOpen,
   handleClientsPeak,
+  handleRepetitionCount,
   handleSimulationStart
 ) {
   minEmployeesInput.addEventListener("change", handleMinEmployees);
@@ -27,6 +31,7 @@ function initEventListeners(
   aisleCountInput.addEventListener("change", handleAisleCount);
   hoursOpenInput.addEventListener("change", handleHoursOpen);
   clientsPeakInput.addEventListener("change", handleClientsPeak);
+  repetitionCountInput.addEventListener("change", handleRepetitionCount);
   simulationButton.addEventListener("click", handleSimulationStart);
 }
 
@@ -37,6 +42,7 @@ export {
   aisleCountInput,
   hoursOpenInput,
   clientsPeakInput,
+  repetitionCountInput,
   simulationButton,
   initEventListeners,
 };
