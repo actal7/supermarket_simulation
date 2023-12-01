@@ -1,4 +1,6 @@
 {
   "messageTargets": ["main", "simController", "w2", "w3"],
-  "messageTypes": ["start", "stop", "pause", "resume", "test", "submitInput"]
+  "messageTypes": ["start", "stop", "pause", "resume", "test", "submitInput"],
+  "employeeWage": 10,
+  "averageItemPrice": 5
 }

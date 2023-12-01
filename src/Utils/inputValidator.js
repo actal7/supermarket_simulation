@@ -1,28 +1,39 @@
-function validateMinEmployees(value) {
-  return Number.isInteger(parseInt(value)) && parseInt(value) > 0;
+function validateMinEmployees(minValue = 0, maxValue) {
+  const min = parseInt(minValue);
+  const max = parseInt(maxValue);
+  return (
+    (Number.isInteger(min) && Number.isInteger(max) && min <= max) ||
+    (Number.isInteger(min) && typeof maxValue === "undefined")
+  );
 }
 
-function validateMaxEmployees(minValue, maxValue = 0) {
-  let min = parseInt(minValue);
-  let max = parseInt(maxValue);
-  return Number.isInteger(max) && max > 0 && max >= min;
+function validateMaxEmployees(maxValue = 0, minValue) {
+  const min = parseInt(minValue);
+  const max = parseInt(maxValue);
+  return (
+    (Number.isInteger(max) && max > 0 && max >= min) ||
+    (Number.isInteger(max) && typeof minValue === "undefined")
+  );
 }
 
 function validateRegisterCount(value) {
-  return Number.isInteger(parseInt(value)) && parseInt(value) > 0;
+  const registers = parseInt(value);
+  return Number.isInteger(registers) && registers > 0;
 }
 
 function validateAisleCount(value) {
-  return Number.isInteger(parseInt(value)) && parseInt(value) > 0;
+  const aisles = parseInt(value);
+  return Number.isInteger(aisles) && aisles > 0;
 }
 
 function validateHoursOpen(value) {
-  let hours = parseInt(value);
+  const hours = parseInt(value);
   return Number.isInteger(hours) && hours > 0 && hours <= 24;
 }
 
 function validateClientsPeak(value) {
-  return Number.isInteger(value) && value > 0;
+  const clients = parseInt(value);
+  return Number.isInteger(clients) && clients > 0;
 }
 
 export {

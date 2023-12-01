@@ -17,5 +17,5 @@ export default (target, actions, event) => {
       `Message type [${event.type}] is not valid for target [${event.target}]`
     );
 
-  actions[event.type]();
+  actions[event.type](event.payload);
 };

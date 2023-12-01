@@ -3,12 +3,25 @@ import Message from "./Utils/Message";
 import messageHandler from "./Utils/MessageHandler";
 import UIController from "./controllers/UIController";
 
-const uc = new UIController();
-console.log(uc.getSimulationConfig());
+const actions = {
+  start: () => {
+    console.log("starting");
+  },
+  stop: () => {
+    console.log("stop");
+  },
+  pause: () => {
+    console.log("pause");
+  },
+  resume: () => {
+    console.log("resume");
+  },
+  submitInput: (payload) => {
+    console.log(payload);
+  },
+};
 
-window.addEventListener("message", (e) => {
-  messageHandler("main", { start: () => console.log("in main") }, e.data);
-});
+const uc = new UIController();
 
 // Init the simulation controller worker
 const simController = new Worker(
@@ -17,7 +30,9 @@ const simController = new Worker(
 
 // Init the message handler for the simulation controller
 simController.onmessage = (e) => {
-  messageHandler("main", { test: () => console.log("in main") }, e.data);
+  messageHandler("main", actions, e.data);
 };
 
-simController.postMessage(new Message("simController", "start"));
+window.addEventListener("message", (e) => {
+  messageHandler("main", actions, e.data);
+});

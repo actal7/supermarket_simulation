@@ -26,19 +26,19 @@ let inputData = {
 export default class UIController {
   constructor() {
     initEventListeners(
-      this.handleMinEmployeesChange,
-      this.handleMaxEmployeesChange,
-      this.handleRegisterCountChange,
-      this.handleAisleCountChange,
-      this.handleHoursOpenChange,
-      this.handleClientsPeakChange,
-      this.handleSimulationStart
+      this.handleMinEmployeesChange.bind(this),
+      this.handleMaxEmployeesChange.bind(this),
+      this.handleRegisterCountChange.bind(this),
+      this.handleAisleCountChange.bind(this),
+      this.handleHoursOpenChange.bind(this),
+      this.handleClientsPeakChange.bind(this),
+      this.handleSimulationStart.bind(this)
     );
   }
 
   handleMinEmployeesChange(e) {
     console.log(e.target.value);
-    if (iv.validateMinEmployees(e.target.value)) {
+    if (iv.validateMinEmployees(e.target.value, this.maxEmployees)) {
       this.minEmployees = e.target.value;
     } else {
       console.error("invalid min employees");
@@ -46,7 +46,7 @@ export default class UIController {
   }
 
   handleMaxEmployeesChange(e) {
-    if (iv.validateMaxEmployees(e.target.value)) {
+    if (iv.validateMaxEmployees(e.target.value, this.minEmployees)) {
       this.maxEmployees = e.target.value;
     } else {
       console.error("invalid max employees");
@@ -85,18 +85,17 @@ export default class UIController {
     }
   }
 
-  handleSimulationStart() {
-    window.postMessage(new Message("main", "submitInput", inputData));
+  updateInputData() {
+    inputData.minEmployees = this.minEmployees;
+    inputData.maxEmployees = this.maxEmployees;
+    inputData.registerCount = this.registerCount;
+    inputData.aisleCount = this.aisleCount;
+    inputData.hoursOpen = this.hoursOpen;
+    inputData.clientsPeak = this.clientsPeak;
   }
 
-  getSimulationConfig() {
-    return {
-      minEmployees: 1,
-      maxEmployees: 10,
-      customerPeak: 10,
-      registerCount: 3,
-      aisleCount: 3,
-      employeePay: 10,
-    };
+  handleSimulationStart() {
+    this.updateInputData();
+    window.postMessage(new Message("main", "submitInput", inputData));
   }
 }
