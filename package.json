@@ -1,0 +1,27 @@
+{
+  "name": "sm_sim",
+  "version": "1.0.0",
+  "description": "This is a simple simulation meant to determine the optimal number of employees required to serve a supermarket with certain parameters.",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actal7/supermarket_simulation.git"
+  },
+  "author": "actal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/actal7/supermarket_simulation/issues"
+  },
+  "homepage": "https://github.com/actal7/supermarket_simulation#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^4.15.1"
+  }
+}
