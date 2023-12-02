@@ -16,6 +16,70 @@ self.onmessage = (e) => {
   simulation = null;
 };
 
+/**
+  client class
+    time left in store
+    total time spent in store
+    total time spent in register
+    time left in register
+    when time left in store = 0 -> find register
+    when time left in register = 0 -> leave store and pay
+*/
+class Client {
+  constructor() {
+    this.timeLeftInStore = 0;
+    this.totalTimeSpentInStore = 0;
+    this.totalTimeSpentInRegister = 0;
+    this.timeLeftInRegister = 0;
+  }
+}
+
+/**
+  employee class
+    breaks taken
+    current task
+    time since last break
+    break priority -> time since last break * 10
+    if priority becomes maintenance and least busy register -> close register for new clients -> go to maintenance
+  */
+class Employee {
+  constructor() {
+    this.breaksTaken = 0;
+    this.currentTask = null;
+    this.timeSinceLastBreak = 0;
+  }
+}
+
+/**
+aisle class
+  priorityScore = time left in maintenance * 10 + time since last maintenance
+  time since last maintenance
+  needs maintenance: true/false
+  time left in maintenance
+*/
+class Aisle {
+  constructor() {
+    this.priorityScore = 0;
+    this.timeSinceLastMaintenance = 0;
+    this.needsMaintenance = false;
+    this.timeLeftInMaintenance = 0;
+  }
+}
+
+/**
+register class
+  state -> open/working/closed
+  clientsQueue -> array of clients
+  priorityScore = totalTimeToCompleteClients
+*/
+class Register {
+  constructor() {
+    this.state = "open";
+    this.clientsQueue = [];
+    this.priorityScore = 0;
+  }
+}
+
 class StoreSimulation {
   constructor(
     employeeWage,
@@ -41,6 +105,8 @@ class StoreSimulation {
       this.totalRuntime
     );
     this.employees = this.createEmployeePool();
+    this.taskUpdateTime = 10;
+    this.priorityUpdateTime = 60;
   }
 
   generateTimeSpentDistribution() {
@@ -89,8 +155,26 @@ class StoreSimulation {
   }
 
   simulateTick(tick) {
-    const clients = this.distributionOfClients[tick];
+    const cDistribution = this.distributionOfClients[tick];
+
+    if (tick % 60 === 0) {
+      // Add new clients
+    }
+
+    if (tick % this.taskUpdateTime === 0) {
+      // Update tasks
+    }
+
+    if (tick % this.priorityUpdateTime === 0) {
+      // Update priority
+      // Assign tasks
+    }
   }
+
+  calculatePriorities() {}
+
+  // (this is what I fear most lmao)
+  assignTasks() {}
 
   runSimulation() {
     const startTime = Date.now();
@@ -98,16 +182,17 @@ class StoreSimulation {
     for (let tick = 0; tick < this.totalRuntime; tick++) {
       this.simulateTick(tick);
     }
-    const endTime = Date.now();
-    console.log(
-      this.distributionOfClients,
-      this.distributionOfClients.reduce((acc, curr) => acc + curr, 0)
-    );
 
-    console.log(
-      this.distributionOfTimeSpent,
-      this.distributionOfTimeSpent.reduce((acc, curr) => acc + curr, 0)
-    );
+    const endTime = Date.now();
+    // console.log(
+    //   this.distributionOfClients,
+    //   this.distributionOfClients.reduce((acc, curr) => acc + curr, 0)
+    // );
+
+    // console.log(
+    //   this.distributionOfTimeSpent,
+    //   this.distributionOfTimeSpent.reduce((acc, curr) => acc + curr, 0)
+    // );
     return {
       timeToComplete: endTime - startTime,
       totalClients: this.distributionOfClients.reduce(
