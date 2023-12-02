@@ -8,7 +8,7 @@ Using both window event listeners and [worker].onmessage event listeners to avoi
 
 # challenges
 
-large amounts of simulated days led to spawning too many web workers, had to do it in batches
+large amounts of simulated days led to spawning too many web workers, had to do it in batches. When that wasn't enough, I went for worker pooling instead of creating / destroying single use workers. That worked great, improved performance more than 10x.
 
 # nice to have
 
