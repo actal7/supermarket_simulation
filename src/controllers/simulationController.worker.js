@@ -33,6 +33,7 @@ function startSimulation(payload) {
 async function batchSimulations(payload) {
   const startTime = Date.now();
   let totalTime = 0;
+  let totalClients = 0;
   let totalSimulations =
     payload.repetitions * (payload.maxEmployees - payload.minEmployees + 1);
   const maxBatchSize = config.maxBatchSize;
@@ -55,10 +56,11 @@ async function batchSimulations(payload) {
       let simulationPromise = new Promise((resolve, reject) => {
         const handleMessage = (e) => {
           totalTime += e.data.payload.timeToComplete;
-          console.log(
-            `Simularea [${i}-${j}] a fost terminata in ${e.data.payload.timeToComplete}`
-          );
-          console.log(e.data.payload);
+          totalClients += e.data.payload.totalClients;
+          // console.log(
+          //   `Simularea [${i}-${j}] a fost terminata in ${e.data.payload.timeToComplete}`
+          // );
+          // console.log(e.data.payload);
           worker.removeEventListener("message", handleMessage);
           resolve();
         };
@@ -87,13 +89,19 @@ async function batchSimulations(payload) {
 
   const endTime = Date.now();
 
-  console.log(`Timpul total de simulare a fost de ${totalTime}`);
+  console.log(`Timpul total de simulare a fost de ${totalTime / 1000}s`);
   console.log(
     `Timpul mediu de simulare a fost de ${totalTime / totalSimulations}`
   );
   console.log(`Numarul total de simulari a fost de ${totalSimulations}`);
   console.log(
     `Timpul total de executie a fost de ${(endTime - startTime) / 1000}s`
+  );
+  console.log(
+    `Clientii in medie ${
+      totalClients /
+      (payload.repetitions * (payload.maxEmployees - payload.minEmployees + 1))
+    }`
   );
 }
 
