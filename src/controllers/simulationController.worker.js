@@ -58,6 +58,7 @@ async function batchSimulations(payload) {
           console.log(
             `Simularea [${i}-${j}] a fost terminata in ${e.data.payload.timeToComplete}`
           );
+          console.log(e.data.payload);
           worker.removeEventListener("message", handleMessage);
           resolve();
         };
