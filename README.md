@@ -10,6 +10,8 @@ Using both window event listeners and [worker].onmessage event listeners to avoi
 
 large amounts of simulated days led to spawning too many web workers, had to do it in batches. When that wasn't enough, I went for worker pooling instead of creating / destroying single use workers. That worked great, improved performance more than 10x.
 
+Performance became a serious issue once I started spawning a lot of Client instances, because of expensive create / cleanup operations. Switched to object pooling.
+
 # nice to have
 
 disable start button if any input invalid / missing
@@ -55,3 +57,9 @@ totalProfit,
 totalWagesPaid,
 timeSpentMaintaining,
 averageServingTime
+
+# TODO
+
+- make aisles priority able to make employees close registers
+- time estimate to complete
+- percentage of work finished in FE

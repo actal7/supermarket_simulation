@@ -26,8 +26,6 @@ let inputData = {
   repetitions: parseInt(repetitionCountInput.value),
 };
 
-console.log(inputData);
-
 export default class UIController {
   init() {
     initEventListeners(
@@ -114,7 +112,7 @@ export default class UIController {
   }
 
   handleSimulationStart() {
-    console.log("submit: ", inputData);
+    // console.log("submit: ", inputData);
     window.postMessage(new Message("main", "submitInput", inputData));
   }
 }
